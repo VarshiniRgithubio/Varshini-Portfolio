@@ -1,0 +1,6 @@
+{
+    "git.autorefresh": false,
+    "git.blame.editorDecoration.enabled": false,
+    "git.enabled": false,
+    "git.enableCommitSigning": false
+}
