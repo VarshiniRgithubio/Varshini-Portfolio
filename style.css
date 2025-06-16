@@ -1,0 +1,906 @@
+/* target body */
+body{
+    margin:0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    color: lightgray;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+.container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* flexible layout */
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    gap:100px;
+    background-color: #001f7c38;
+}
+
+/* target background video */
+.back-vid{
+    position: fixed;
+    /* right and bottom 0 to positionat the bottom right corner */
+    right: 0%;
+    bottom: 0%;
+    /* video stage behond everything else */
+    z-index: -1;
+    /* blending effect */
+    mix-blend-mode: lighten;
+}
+header{
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    align-items: center;
+    justify-content: space-around;
+    height: 70px;
+    background-color: rgb(255,255,255,0.123);
+    backdrop-filter: blur(10px);
+    padding: 0 30px;
+    box-shadow: 0 0 15px #72a1de68;
+    /* z index in always present in the top  other elements*/
+    z-index: 999;
+}
+
+.left{
+    display: flex;
+    align-items: center;
+}
+.left img{
+    width: 50px;
+    margin: 0 15ppx;
+}
+
+header ul{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    padding: 15px 15px;
+    border-radius: 50px;
+    background-color: rgba(0,0,69,0.30);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px #727fde80;
+}
+header ul li{
+    list-style: none;
+}
+header ul a{
+    text-decoration: none;
+    color:white;
+    font-weight: 700;
+    margin: 0 10px;
+}
+
+.box-icons{
+    display: flex;
+    gap: 40px;
+}
+
+.box-icons a{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #727fde;
+    text-decoration: none;
+    color: lightgray;
+
+}
+/* change the background color of icon when user touch */
+.box-icons a:hover{
+    background-color: #727fde;
+    color:black;
+    box-shadow: 0 0 15px #727fde6f;
+}
+
+/* blackhole box */
+.blackhole-box{
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    justify-content: center;
+    /* blend the black whole vedio */
+    mix-blend-mode: lighten;
+}
+
+.blackhole-box video{
+    width: 100%;
+    margin-top: -24.5%;
+}
+.hero{
+    position: relative;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.hero-info{
+    position: absolute;
+    left: 5%;
+}
+.hero-info   .hero-info-title{
+    color: #727fde;
+    padding: 10px 10px;
+    border: 2px solid #727fde77;
+    width: 240px;
+    background-color: #2200493d;
+    box-shadow: 0 0 5px #727fde;
+    border-radius: 10px;
+}
+.hero-info h1{
+    font-size: 60px;
+    max-width: 600px;
+    font-weight: 700;
+    line-height: 70px;
+    margin-top:40px; 
+    margin-bottom: 30px;
+}
+hero.info p{
+    width:300px ;
+    /* better readablity */
+    line-height: 28px;
+    margin-bottom: 40px;
+    font-size: 30px;
+}
+
+.hero-info button{
+    color: white;
+    padding: 15px 35px;
+    border-radius: 10px;
+    border: 1px solid #727fdeb4;
+    background-color: #2200493d;
+    box-shadow: 0 0 5px #727fde;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* hover effect it will show the other colour when we put the cursor on it */
+.hero-info button:hover{
+    box-shadow: 0 0 15px #727fde;
+}
+
+/* gradient effect */
+.gradient{
+    background: linear-gradient(to right,#008baa,#7e42a7,#6600c5,#2a46ff,#0099ff,#008baa);
+    background-size: 300%;
+    background-clip: text;
+    /* only affect the gradient text not the continer */
+    -webkit-background-clip: text;
+    /* transperent the text */
+    -webkit-text-fill-color: transparent;
+    /* anime move dynamiclly */
+    animation:animate-gradient 2.5s linear infinite;
+}
+
+@keyframes animate-gradient{
+    to{
+        background-position:200%;
+    }
+}
+.hero-vid-box{
+    position: absolute;
+    right: 3%;
+    overflow: hidden;
+    top:30%;
+}
+.hero-vid-box video{
+    height: 400px;
+    mix-blend-mode: lighten;
+    object-fit: cover;
+    background: transparent;
+    border: none;
+    display: block;
+    pointer-events: none;
+    filter: brightness(0.9) contrast(1.5);
+}
+
+.scroll-down{
+    height: 50px;
+    width: 30px;
+    border:  2px solid lightgray;
+    position: absolute;
+    left: 48%;
+    bottom: 8%;
+    border-radius: 50px;
+    cursor: pointer;
+    /* box depth effect */
+    box-shadow:0 0 15px rgba(211,211,211,0.477);
+}
+.scroll-down::before,
+.scroll-down::after{
+    content:"";
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    height: 10px;
+    width: 10px;
+    border:2px solid lightgray;
+    /* centre the error properly v mark should be proper*/
+    transform: translate(-50%,-100%) rotate(45deg);
+    border-top:transparent;
+    border-left: transparent;
+    /* scroll down animation for the errors */
+    animation: scroll-down 2s ease-in-out infinite;
+
+}
+/* scroll down fro mouse  */
+.scroll-down::before{
+    top:30%;
+    animation-delay: 0.5s;
+}
+
+@keyframes scroll-down{
+    0%{
+        /* invesible at start */
+        opacity: 0;
+    }
+    30%,60%{
+        /*  */
+        opacity: 1;
+    }
+    100%{
+        top:90%;
+        opacity: 0;
+    }
+}
+.info-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin-top: 100px;
+}
+.section-title{
+    font-size: 40px;
+    font-weight: 700;
+}
+.info-cards{
+    display: grid;
+    /* for three auto size columns */
+    grid-template-columns: auto auto auto;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    margin-top: 30px;
+}
+.cards{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    width: auto;
+    height: 40vh;
+    /* keep the content inside the card */
+    overflow: hidden;
+    border: 1px solid grey;
+    background-color: #080020b7;
+    border-radius: 10px;
+    /* make transition smoother */
+    transition: 0.3s;
+
+}
+/* image size and height change */
+.cards img{
+    width: 30%;
+    height: 50%;
+    object-fit:cover;
+    
+}
+.cards .network {
+    width: 100%;                  /* Take full width */
+    height: 60%;                 /* Keep aspect ratio */
+    object-fit: cover;            /* Fill the space nicely */
+    mix-blend-mode: screen;       /* Make black transparent */
+    opacity: 0.9;                 /* Slightly faded for blend */
+    border: none;                 /* Remove borders */
+    display: block;               /* No inline spacing */
+    margin: 1rem auto 0;          /* Center image with spacing */
+    background: transparent;
+    pointer-events: none;         /* Ignore mouse for better UX */
+    filter: brightness(1) contrast(1.5); /* Boost glow */
+}
+.cards h1{
+    position: absolute;
+    margin: 0;
+    bottom: 40%;
+    left: 5%;
+    font-size: 25px;
+    z-index: 1;
+    color: lightgrey;
+}
+.cards p{
+    position:absolute;
+    bottom: 3%;
+    left:5%;
+    z-index: 1;
+    max-width: 300px;
+    color:  rgb(186, 168, 168);
+    font-size: 13px;
+    line-height:20px;
+}
+.cards video{
+    margin-top:10%;
+    width: 70%;
+    height: 50%;
+    object-fit: cover;
+    mix-blend-mode: lighten;
+}
+.cards button{
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid #727fdeb4;
+    background-color: #2200493d;
+    box-shadow: 0 0 5px #727fde;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+}
+/* for 4 cards we are doing this */
+.cards button:hover{
+    box-shadow: 0 0 15px #727fde86;
+    opacity: 0.7;
+}
+.cards:hover{
+    box-shadow: 0 0 15px rgba(224, 216, 216, 0.5);
+}
+/* fix grid layer */
+.cards:nth-child(2) h1{
+    bottom: 60%;
+}
+.cards:nth-child(3){
+    grid-row:span 2;
+    height:83vh;
+}
+.cards:nth-child(3) p{
+    bottom: 12%;
+    width: auto;
+}
+.cards:nth-child(3) h1{
+    bottom: 60%;
+    top:50%
+}
+.cards:nth-child(4) {
+    grid-column: span 2;
+}
+.cards:nth-child(4) p{
+    max-width: 650px;
+}
+
+.cards:nth-child(4) h1{
+    bottom: 35%;
+}
+/* up to here i have done the ui design */
+
+/* start the project section */
+
+.my-projects{
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    align-items: center;
+    position: relative;
+    width: 90%;
+    height: 100vh;
+    margin-top: 200px;              /* for spacing purpous */
+    margin-bottom: 700px;
+    
+}
+.project-cards{
+    display: flex;
+    width: 100%;
+    height: 40%;
+    align-items: center;
+    gap: 10%;
+    justify-content: center;
+}
+/* project video */
+.project-vidbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    /* relative easy to adjest the position */
+    position: relative;
+     /*shows that image is intractive  */
+    cursor: pointer;
+    /* dont shink pn small screen */
+    min-width: 400px;
+    /* smooth animation effect transition */
+    transition: 0.5s;     
+    mix-blend-mode: difference;
+
+}
+.project-vidbox video{
+    width: 100%;
+    object-fit:cover;
+    box-shadow: 0 0 10px lightgray;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+.project-vidbox video:hover{
+    box-shadow: 0 0 20px lightgrey;
+}
+.project-info{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 50%;
+    padding-left: 10%;
+}
+/* i am doing for heading */
+.project-info h1{
+    width: 90%;
+    font-size: 25px;
+    font-weight: bold;
+    text-wrap: nowrap;
+    margin-bottom: 10px;
+    margin-top: 0%;
+    max-width: 450px;
+}
+.project-info p{
+    width: 90%;
+    max-width: 400px;
+    min-width: 300px;
+    margin-bottom: 50px;
+    margin-top: 0;
+}
+.project-info button{
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid #727fdeb4;
+    background-color: #2200493d;
+    box-shadow: 0 0 5px #727fde;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+.project-info button:hover{
+    box-shadow: 0 0 15px #727fde86;
+    opacity: 0.7;
+}
+
+
+/* style the skills */
+
+.skills-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 200px;
+}
+.skills-box{
+    width: 100%;
+    /* occupy the  entire height */
+    height: 90vh;
+    position: relative;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+
+}
+
+
+.skills-video {
+  width: 500%;
+  height: 100%;
+  border-radius: 10px;
+  opacity: 0.7;
+  mix-blend-mode: lighten;
+  margin: 1rem auto 0;
+  border: none;
+  outline: none;
+}
+
+.designer{
+    position:absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    top: 2%;
+    left: 2%;
+    max-width: 300px;
+}
+.coder{
+    position:absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    top:70%;
+    right: 2%;
+    max-width: 400px;
+}
+
+.skills-box h1{
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+}
+.skills-box p{
+    line-height:25px ;
+}
+
+/* slider */
+.slider{
+    position: absolute;
+    bottom: 0%;
+    right: 20%;
+    width: 60%;
+    margin: 100px auto 0 auto;
+    /* slider height match with diclared item */
+    height: 
+    var(--height);
+    /* overflow used for in any pic are out of the designated area it will remove that */
+    overflow: hidden;
+    margin-top: 40px;
+    /* background for the slider we use the linear gradient */
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        #000 10% 90%,
+        transparent
+        
+    );
+    mix-blend-mode: difference;
+    opacity: 0.8;
+    
+
+}
+.slider .list{
+    display: flex;
+    width: 100%;
+    /* integrety of images preserve */
+    min-height: calc(var(--width) * var(--quantity));
+    position: relative;
+}
+
+.slider .list .item {
+    width: var(--width);
+    height: var(--height);
+    position: absolute;
+    left: 100%;
+    animation: autoRun 10s linear infinite;
+    animation-delay: calc((10s / var(--quantity)) * (var(--position) - 1));
+}
+.slider .list .item img{
+    width: 60%;
+    position: relative;  /* allow positioning */
+    top: 0%;            /* shift image down by 30% of its own height */
+    display: block;      /* good practice for images */
+    margin: 0 auto;
+
+}
+/* implement the autorun animation */
+@keyframes autoRun{
+    from{
+        left:100%;
+    }to{
+        left: calc(var(--width)*-1);
+    }
+}
+ 
+.slider:hover .item{
+    /* for this important we should not use ots a bad practice */
+    animation-play-state:paused!important;
+    filter:grayscale(1);
+}
+/* maintain the original color */
+.slider .item:hover{
+    filter:grayscale(0);
+}
+.slider .list.item {
+    border: 1px solid black;
+}
+/* this used for put that slider to the down of the skills video */
+.slider-section {
+  display: flex;
+    flex-direction: column;
+    gap: 10%;
+    align-items: center;
+    position: relative;
+    width: 90%;
+    height: 10vh;
+    margin-top: 20px;              /* for spacing purpous */
+    margin-bottom: 20px;/* for spacing purpous */
+}
+
+
+/* certificates */
+.My-certificates{
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    align-items: center;
+    position: relative;
+    width: 90%;
+    margin-top: 80px;  
+    height: 20%;            /* for spacing purpous */
+    
+    
+}
+.certificate-cards{
+    display: flex;
+    width: 100%;
+    height: 40%;
+    align-items: center;
+    gap: 10%;
+    justify-content: center;
+}
+.certificate-imagebox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    /* relative easy to adjest the position */
+    position: relative;
+     /*shows that image is intractive  */
+    cursor: pointer;
+    /* dont shink pn small screen */
+    min-width: 400px;
+    /* smooth animation effect transition */
+    transition: 0.5s;     
+    mix-blend-mode: difference;
+
+}
+
+.certificate-imagebox img{
+    width: 80%;
+    object-fit:cover;
+    box-shadow: 0 0 10px lightgray;
+    border-radius: 10px;
+    transition: 0.3s;
+    height: auto;
+    /* provide the space between the images */
+    margin-bottom: 40px;
+}
+.certificate-imagebox img:hover{
+    box-shadow: 0 0 20px lightgrey;
+}
+.certificate-info{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 50%;
+    padding-left: 10%;
+}
+/* i am doing for heading */
+.certificate-info h1{
+    width: 90%;
+    font-size: 25px;
+    font-weight: bold;
+    text-wrap: nowrap;
+    margin-bottom: 10px;
+    margin-top: 0%;
+    max-width: 450px;
+}
+.certificate-info p{
+    width: 50%;
+    gap: 10%;
+    max-width: 400px;
+    min-width: 300px;
+    margin-bottom: 50px;
+    margin-top: 0;
+}
+.certificate-title{
+    gap:10%;
+    margin-top: 10px;
+    font-size: 40px;
+    margin-bottom: 100px;
+    
+}
+.certificate-info button{
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid #727fdeb4;
+    background-color: #2200493d;
+    box-shadow: 0 0 5px #727fde;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+.certificate-info button:hover{
+    box-shadow: 0 0 15px #727fde86;
+    opacity: 0.7;
+}
+
+/* thank you section */
+.contect-section{
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-self: center;
+    gap: 5%;
+    align-items: center;
+    position: relative;
+    margin-top: 80px;
+}
+.contect-section h1{
+    position: relative;
+    top: 10%;
+    left: 20%;
+}
+.social-box {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    
+}
+.social-box i{
+    color: #727fde;
+    font-size: 30px;
+    margin-right: 20px;
+}
+.social-icons a i{
+    color: rgb(240, 234, 234);
+    margin-top: 20px;
+}
+.footer {
+    display: flex;
+    position: relative; /* Keep it in normal document flow */
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    background-color: rgb(113, 105, 105);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px rgb(156, 143, 143);
+    width: 100%;
+    z-index: 999;
+}
+
+footer h1{
+    font-size: 40px;
+
+}
+/* blur effect */
+.autoBlur{
+    animation: autoBLurAnimation linear both;
+    /* animation user scroll it will blur */
+    animation-timeline: view();
+}
+
+@keyframes autoBlurAnimation {
+    /* start */
+    0%{
+        filter: blur(40px);
+        opacity: 0;
+    }
+    35%, 65%{
+        filter:blur(0);
+        opacity: 1;
+    }
+    100%{
+        filter: blur(40px);
+        opacity: 0;
+    }
+}
+
+
+/* tablet response */
+@media screen and (max-width: 1000px){
+    .blackhole-box video{
+        margin-top: -20%;
+    }
+    .hero-info h1{
+        font-size: 40px;
+        max-width: 400px;
+        line-height: 40px;
+    }
+    .hero-info p{
+        max-width: 300px;
+
+    }
+    .hero-vid-box{
+        right: 0;
+    }
+
+    .hero-vid-box video{
+        height: 500px;
+
+    }
+    .section-title{
+        font-size: 30px;
+    }
+    .info-card{
+        grid-template-columns: auto;
+    }
+    .card:nth-child(3){
+        grid-column: span 2;
+        height: 70vh;
+    }
+    .info-cards .card h1{
+        font-size: 20px;
+    }
+    .card video{
+        height: 65px;
+        margin-top: 5%;
+    }
+
+    .my-projects{
+        margin-bottom: 300px;
+    }
+
+    .project-vidbox video{
+        width: 250px;
+        margin-left: -100px;
+    }
+
+    .project-info{
+        padding-left: 0;
+        margin-left: -50px;
+    }
+
+    .project-info h1{
+        font-size: 20px;
+        max-width: 200px;
+        text-wrap: wrap;
+    }
+    .project-info p{
+        font-size: 10px;
+        text-wrap: wrap;
+        max-width: 200px;
+        min-width: 0;
+    }
+    .My-certificates{
+        margin-bottom: 300px;
+    }
+
+    .certificate-imagebox img{
+        width: 250px;
+        margin-left: -100px;
+    }
+
+    .certificate-info{
+        padding-left: 0;
+        margin-left: -50px;
+    }
+
+    .certificate-info h1{
+        font-size: 20px;
+        max-width: 200px;
+        text-wrap: wrap;
+    }
+    .certificate-info p{
+        font-size: 10px;
+        text-wrap: wrap;
+        max-width: 200px;
+        min-width: 0;
+    }
+    footer{
+        font-size: 20px;
+    }
+}
+
+
+/* video responsive */
+@media(max-aspect-ratio:16/9){
+    .back-vid{
+        width: auto;
+        height: 100%;
+    
+    }
+}
+/* proper adaptiv all screen size like mobile laptop desktop */
+@media (min-aspect-ratio:16/9){
+    .back-vid{
+        width: 100%;
+        height: auto;
+    }
+}
